@@ -1,15 +1,13 @@
 {
   "name": "sse-demo",
   "version": "1.0.0",
-  "description": "Server sent events demo",
-  "main": "index.js",
+  "description": "Server-Sent Events demo with express server and browser client ",
+  "private": true,
   "scripts": {
-    "watch": "nodemon --signal SIGTERM ./app.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "nodemon --signal SIGTERM ./app.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Garen Yondem",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
     "random-words": "^1.1.0"
