@@ -2,6 +2,7 @@
   <head>
     <script type="text/javascript">
       window.addEventListener("load", () => {
+        const content = document.getElementById("content");
         const source = new EventSource("/events");
 
         source.addEventListener("message", event => {
@@ -9,7 +10,13 @@
           if (event.origin != "http://localhost:3020") {
             return alert("Received event from invalid origin");
           }
-          document.getElementById("content").innerHTML += event.data + "<br/>";
+          content.innerHTML += event.data + "<br/>";
+        });
+        source.addEventListener("random-word", event => {
+          content.innerHTML += `<span style="background-color: black; color: white;">${event.data}</span><br/>`;
+        });
+        source.addEventListener("random-id", event => {
+          content.innerHTML += `<span style="background-color: yellow; color: black;">${event.data}</span><br/>`;
         });
       });
     </script>

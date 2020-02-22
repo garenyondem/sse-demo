@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import nanoid from "nanoid";
 //@ts-ignore
 import randomWords from "random-words";
 
@@ -12,8 +13,19 @@ function eventsHandler(req: Request, res: Response) {
 
     setInterval(() => {
         // emit
-        res.write(`data: ${randomWords()}\n\n`);
+        res.write(ctorEventData("ping"));
+        res.write(ctorEventData(randomWords(), "random-word"));
+        res.write(ctorEventData(nanoid(5), "random-id"));
     }, 200);
+}
+
+function ctorEventData(body: string, event?: string) {
+    const data = [];
+    if (event) {
+        data.push(`event: ${event}\n`);
+    }
+    data.push(`data: ${body}\n\n`);
+    return data.join("");
 }
 
 const app = express();
