@@ -5,6 +5,10 @@
         const source = new EventSource("/events");
 
         source.addEventListener("message", event => {
+          //Security pre-caution
+          if (event.origin != "http://localhost:3020") {
+            return alert("Received event from invalid origin");
+          }
           document.getElementById("content").innerHTML += event.data + "<br/>";
         });
       });
