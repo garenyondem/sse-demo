@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import nanoid from "nanoid";
 //@ts-ignore
 import randomWords from "random-words";
+import path from "path";
 
 function eventsHandler(req: Request, res: Response) {
     // Set & send required headers
@@ -29,7 +30,7 @@ function ctorEventData(body: string, event?: string) {
 }
 
 const app = express();
-app.use("/", express.static("public"));
+app.use("/", express.static(path.join(__dirname, "public")));
 app.get("/events", eventsHandler);
 app.listen(3020);
 
